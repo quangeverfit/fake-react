@@ -13,7 +13,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json /app/package.json
 # COPY semantic.json /app/semantic.json
 
-RUN npm install
+RUN npm install --no-cache
 
 COPY . /app
 
