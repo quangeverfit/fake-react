@@ -26,7 +26,7 @@ pipeline {
         branch 'dev'
       }
       environment {
-          USERNAME_PASSWORD = credentials(${agentCredential})
+          USERNAME_PASSWORD = credentials("${agentCredential}")
       }
       steps {
         sh 'printenv'
