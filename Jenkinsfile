@@ -38,7 +38,9 @@ pipeline {
     }
 
     stage('Clean') {
-      sh 'bash ./ci/clean.sh'
+      steps {
+        sh 'bash ./ci/clean.sh'
+      }
     }
   }
 }
