@@ -29,16 +29,16 @@ pipeline {
           USERNAME_PASSWORD = credentials("${agentCredential}")
       }
       steps {
-        sh 'printenv'
-        sh 'ls -al'
         withCredentials(bindings: [file(credentialsId: 'SAMPLE_ENV_FILE', variable: 'envfile')]) {
           sh "echo $USERNAME_PASSWORD_PSW | sudo -S cp $envfile .env"
           sh "cat .env"
         }
-        sh 'docker --version'
-        sh 'docker-compose --version'
         sh 'bash ./ci/jenkin.sh'
       }
+    }
+
+    stage('Clean') {
+      sh 'bash ./ci/clean.sh'
     }
   }
 }
