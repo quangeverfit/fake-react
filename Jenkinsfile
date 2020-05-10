@@ -28,6 +28,7 @@ pipeline {
       }
       steps {
         sh 'printenv'
+        sh 'ls -al'
         withCredentials(bindings: [file(credentialsId: 'SAMPLE_ENV_FILE', variable: 'envfile')]) {
           sh "cp $envfile .env"
           sh "cat .env"
