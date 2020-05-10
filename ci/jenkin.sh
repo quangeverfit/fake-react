@@ -3,4 +3,3 @@
 cd $(dirname $0)
 cd ../
 ls -al
-echo Done
