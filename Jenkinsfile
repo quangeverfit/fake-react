@@ -5,6 +5,8 @@ if (BRANCH_NAME == "dev") {
     agentLabel = "slave01"
 }
 
+def agentCredential
+agentCredential = "${agentLabel.toUpperCase()}_USERNAME_PASSWORD"
 
 pipeline {
   agent {
@@ -24,13 +26,13 @@ pipeline {
         branch 'dev'
       }
       environment {
-        USERNAME_PASSWORD = credentials('SAMPLE_USERNAME_PASSWORD_CREDENTIAL')
+          USERNAME_PASSWORD = credentials("${agentCredential}")
       }
       steps {
         sh 'printenv'
         sh 'ls -al'
         withCredentials(bindings: [file(credentialsId: 'SAMPLE_ENV_FILE', variable: 'envfile')]) {
-          sh "cp $envfile .env"
+          sh "echo $USERNAME_PASSWORD_PSW | sudo -S cp $envfile .env"
           sh "cat .env"
         }
         sh 'docker --version'
