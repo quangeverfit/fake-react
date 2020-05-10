@@ -6,7 +6,7 @@ if (BRANCH_NAME == "dev") {
 }
 
 def agentCredential
-agentCredential = "${agentCredential.toUpperCase()}_USERNAME_PASSWORD"
+agentCredential = "${agentLabel.toUpperCase()}_USERNAME_PASSWORD"
 
 pipeline {
   agent {
