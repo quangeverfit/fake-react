@@ -1,18 +1,9 @@
-version: "2"
+version: "3"
 services:
-  nginx:
-    build:
-      context: nginx
-      dockerfile: Dockerfile
-    ports:
-      - "80:80"
-    command: nginx -g "daemon off";
-
-    depends_on:
-      - nodejs
-
-  nodejs:
+  frontend:
+    image: 'everfit-demo-frontend:latest'
+    container_name: everfit-web
     build:
       context: .
-      dockerfile: Dockerfile
-    image: everfit-web-fake
+    ports:
+      - 8000:80
