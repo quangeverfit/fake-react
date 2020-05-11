@@ -3,6 +3,9 @@
 cd $(dirname $0)
 cd ../
 
+
+printenv
+
 echo "Push image to $IMAGE_URL"
 
 # Tag image
