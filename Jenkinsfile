@@ -22,7 +22,8 @@ pipeline {
   environment {
     AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
-    IMAGE_URL             = "${credentials('IMAGE_REPOSITORY_URL')}/everfit-demo-${repoNamespace}/frontend:latest"
+    IMAGE_REPOSITORY_URL  = credentials('IMAGE_REPOSITORY_URL')
+    IMAGE_URL             = "${$IMAGE_REPOSITORY_URL}/everfit-demo-${repoNamespace}/frontend:latest"
   }
 
   stages {
