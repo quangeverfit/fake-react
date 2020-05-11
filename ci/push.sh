@@ -3,8 +3,7 @@
 cd $(dirname $0)
 cd ../
 
-export AWS_DEFAULT_REGION=us-east-2
-printenv
+# login
 
 echo "Push image to $IMAGE_URL"
 
