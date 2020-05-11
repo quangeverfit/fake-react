@@ -43,7 +43,9 @@ pipeline {
     }
 
     stage('Push') {
-      sh 'bash ./ci/push.sh'
+      steps {
+        sh 'bash ./ci/push.sh'
+      }
     }
 
     stage('Clean') {
