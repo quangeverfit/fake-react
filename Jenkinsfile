@@ -1,12 +1,16 @@
 def agentLabel
+def repoNamespace
 if (BRANCH_NAME == "dev") {
-    agentLabel = "slave01"
+    agentLabel    = "slave01"
+    repoNamespace = "dev"
 } else {
-    agentLabel = "slave01"
+    agentLabel    = "slave01"
+    repoNamespace = "prod"
 }
 
 def agentCredential
 agentCredential = "${agentLabel.toUpperCase()}_USERNAME_PASSWORD"
+
 
 pipeline {
   agent {
@@ -16,8 +20,9 @@ pipeline {
   }
 
   environment {
-    AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY')
-    AWS_SECRET_ACCESS_KEY = ""
+    AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+    IMAGE_URL             = "${credentials('AWS_SECRET_ACCESS_KEY')}/everfit-demo-${repoNamespace}/frontend:latest"
   }
 
   stages {
@@ -33,8 +38,12 @@ pipeline {
           sh "echo $USERNAME_PASSWORD_PSW | sudo -S cp $envfile .env"
           sh "cat .env"
         }
-        sh 'bash ./ci/jenkin.sh'
+        sh 'bash ./ci/build.sh'
       }
+    }
+
+    stage('Push') {
+      sh 'bash ./ci/push.sh'
     }
 
     stage('Clean') {
