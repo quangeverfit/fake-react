@@ -22,7 +22,7 @@ pipeline {
   environment {
     AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
-    AWS_DEFAULT_REGION    = 'us-east-2'
+    AWS_DEFAULT_REGION    = credentials('AWS_DEFAULT_REGION')
     IMAGE_REPOSITORY_URL  = credentials('IMAGE_REPOSITORY_URL')
     IMAGE_URL             = "$IMAGE_REPOSITORY_URL/everfit-demo-${repoNamespace}/frontend:latest"
   }
@@ -49,11 +49,10 @@ pipeline {
         sh 'bash ./ci/push.sh'
       }
     }
-
-    stage('Clean') {
-      steps {
-        sh 'bash ./ci/clean.sh'
-      }
+  }
+  post { 
+    always { 
+      sh 'bash ./ci/clean.sh'
     }
   }
 }
