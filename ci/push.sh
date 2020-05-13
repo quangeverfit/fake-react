@@ -3,12 +3,14 @@
 cd $(dirname $0)
 cd ../
 
-# login
+# Tag image with newest version
+docker tag everfit-demo-frontend:latest "$IMAGE_URL_WITHOUT_VER:latest"
 
-echo "Push image to $IMAGE_URL"
+# Push latest image
+docker push "$IMAGE_URL_WITHOUT_VER:latest"
 
-# Tag image
-docker tag everfit-demo-frontend:latest $IMAGE_URL
+# Tag image with specfic version
+docker tag everfit-demo-frontend:latest "$IMAGE_URL_WITHOUT_VER:$IMAGE_TAG"
 
-# Push image
-docker push $IMAGE_URL
+# Push image with specfic version
+docker push "$IMAGE_URL_WITHOUT_VER:$IMAGE_TAG"
