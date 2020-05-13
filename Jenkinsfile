@@ -29,7 +29,7 @@ pipeline {
                                returnStdout: true,
                                script: "date +%Y%m%d%H%M"
                             )}"""
-    IMAGE_TAG             = "$BUILD_NUMBER.$IMAGE_TAG_DATE"
+    IMAGE_TAG             = "$BUILD_NUMBER-$IMAGE_TAG_DATE"
     IMAGE_URL_WITHOUT_VER = "$IMAGE_REPOSITORY_URL/everfit-demo-$REPO_NAMESPACE/frontend"
   }
 
