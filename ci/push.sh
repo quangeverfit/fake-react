@@ -10,7 +10,8 @@ docker tag everfit-demo-frontend:latest "$IMAGE_URL_WITHOUT_VER:latest"
 docker push "$IMAGE_URL_WITHOUT_VER:latest"
 
 # Tag image with specfic version
-docker tag everfit-demo-frontend:latest "$IMAGE_URL_WITHOUT_VER:$IMAGE_TAG"
+IMAGE_URL="$IMAGE_URL_WITHOUT_VER:$IMAGE_TAG"
+docker tag everfit-demo-frontend:latest $IMAGE_URL
 
 # Push image with specfic version
-docker push "$IMAGE_URL_WITHOUT_VER:$IMAGE_TAG"
+docker push $IMAGE_URL
