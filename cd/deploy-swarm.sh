@@ -16,3 +16,6 @@ export DOCKER_HOST=$MANAGER_HOST
 
 # Update stack
 docker stack deploy --with-registry-auth -c docker-stack-$PROJECT_ENV.yml everfit-demo-$PROJECT_ENV
+
+# View stack
+docker stack services everfit-demo-$PROJECT_ENV
