@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  frontend:
+    image: "${IMAGE_REPOSITORY_URL}/everfit-demo-${REPO_NAMESPACE}/frontend:${IMAGE_TAG}"
+    ports:
+      - 8000:80
+    deploy:
+      mode: replicated
+      replicas: 3
+      update_config:
+        order: start-first
+      rollback_config:
+        order: start-first
