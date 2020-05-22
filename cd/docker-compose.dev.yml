@@ -6,7 +6,7 @@ services:
       - 8000:80
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 4
       update_config:
         order: start-first
       rollback_config:
